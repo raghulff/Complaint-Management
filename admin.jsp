@@ -1,23 +1,26 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" %>
+
 <%
 String username = request.getParameter("username");
 String password = request.getParameter("password");
 
-if ("POST".equalsIgnoreCase(request.getMethod()))
-{
-    if ("raghul".equals(username) && "raghulff22".equals(password))
-    {
-        response.sendRedirect("view.jsp");
-        return;
-    }
+boolean validLogin =
+        "raghul".equals(username) &&
+        "raghulff22".equals(password);
+
+if ("POST".equalsIgnoreCase(request.getMethod()) && validLogin) {
+    response.sendRedirect("view.jsp");
+    return;
 }
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Admin Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="form-section">
@@ -25,10 +28,7 @@ if ("POST".equalsIgnoreCase(request.getMethod()))
     <h2>Admin Login</h2>
 
     <%
-    if ("POST".equalsIgnoreCase(request.getMethod()))
-    {
-        if (!( "raghul".equals(username) && "raghulff22".equals(password)))
-        {
+    if ("POST".equalsIgnoreCase(request.getMethod()) && !validLogin) {
     %>
 
         <div class="message message-error">
@@ -36,7 +36,6 @@ if ("POST".equalsIgnoreCase(request.getMethod()))
         </div>
 
     <%
-        }
     }
     %>
 
